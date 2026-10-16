@@ -1,0 +1,84 @@
+name: Release approved candidate
+on:
+  workflow_dispatch:
+    inputs:
+      staging_run_id:
+        description: 'QA済みSTGの成功run ID（通常リリース時）'
+        type: string
+      rollback_tag:
+        description: '旧版へ戻す場合のみ既存releaseタグ。run IDとは同時指定不可'
+        type: string
+      qa_note:
+        description: '本人QA結果と本番公開承認の記録（日時・対象・要点）'
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: production-pages
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Obtain exact reviewed bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STG_RUN: ${{ inputs.staging_run_id }}
+          ROLLBACK_TAG: ${{ inputs.rollback_tag }}
+          QA_NOTE: ${{ inputs.qa_note }}
+        run: |
+          python3 scripts/release_input.py
+      - run: python3 scripts/bundle.py verify candidate build/site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-bundle
+          path: candidate/
+          retention-days: 90
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/site
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+      actions: read
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deploy
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+          path: candidate
+      - name: Archive released bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          QA_NOTE: ${{ inputs.qa_note }}
+          STG_RUN: ${{ inputs.staging_run_id }}
+          ROLLBACK_TAG: ${{ inputs.rollback_tag }}
+        run: |
+          python3 - <<'PY'
+          import os,json,pathlib
+          m=json.loads(pathlib.Path('candidate/manifest.json').read_text())
+          note=f"Source: {m['source_sha']}\nZIP SHA256: {m['zip_sha256']}\nSTG run: {os.environ['STG_RUN']}\nRollback from: {os.environ['ROLLBACK_TAG']}\n\n{os.environ['QA_NOTE']}\n"
+          pathlib.Path('release-notes.md').write_text(note)
+          PY
+          gh release create "deploy-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" candidate/site.zip candidate/manifest.json --target "$GITHUB_SHA" --title "developING release $GITHUB_RUN_ID" --notes-file release-notes.md
+      - name: Smoke test
+        run: |
+          for attempt in {1..12}; do
+            if curl -fsSL "https://ing08.github.io/developing/version.json?run=$GITHUB_RUN_ID" | python3 -c 'import json,sys,pathlib; assert json.load(sys.stdin)["source_sha"]==json.loads(pathlib.Path("candidate/manifest.json").read_text())["source_sha"]'; then exit 0; fi
+            sleep 10
+          done
+          exit 1

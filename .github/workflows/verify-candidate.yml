@@ -1,0 +1,23 @@
+name: Verify STG candidate (no release)
+on:
+  workflow_dispatch:
+    inputs:
+      staging_run_id:
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STG_RUN: ${{ inputs.staging_run_id }}
+          QA_NOTE: '自動検証のみ。本人QA・本番承認ではありません。'
+        run: |
+          python3 scripts/release_input.py
+          python3 scripts/bundle.py verify candidate build/site

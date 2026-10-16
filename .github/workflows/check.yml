@@ -1,0 +1,12 @@
+name: Check
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - run: node --check site/app.js && node --check site/data.js
+      - run: python3 scripts/bundle.py build "$GITHUB_SHA"
