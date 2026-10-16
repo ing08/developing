@@ -4,7 +4,9 @@ const art = app => `<div class="media ${escapeHTML(app.artClass || '')}"><div cl
 const appCard = app => `<a class="card" href="#app/${encodeURIComponent(app.id)}">${art(app)}<div class="card-content"><div class="meta"><span class="badge">アプリ</span></div><h3>${escapeHTML(app.name)}</h3><p>${escapeHTML(app.description)}</p><div class="card-end">紹介を読む<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
 const card = article => {
   const category = Library.categoryFor(article, categories);
-  return `<a class="card" href="#article/${encodeURIComponent(article.slug)}"><div class="media"><img src="assets/${escapeHTML(article.img)}" alt="" width="1536" height="1024"></div><div class="card-content"><div class="meta"><span class="badge">${escapeHTML(category?.name || '読みもの')}</span><time>${escapeHTML(article.date)}</time></div><h3>${escapeHTML(article.title)}</h3><p>${escapeHTML(article.desc)}</p><div class="card-end">読んでみる<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
+  const relatedApp = apps.find(a => a.id === article.app);
+  const artwork = relatedApp ? art(relatedApp) : `<div class="media"><img src="assets/${escapeHTML(article.img)}" alt="" width="1536" height="1024"></div>`;
+  return `<a class="card" href="#article/${encodeURIComponent(article.slug)}">${artwork}<div class="card-content"><div class="meta"><span class="badge">${escapeHTML(category?.name || '読みもの')}</span><time>${escapeHTML(article.date)}</time></div><h3>${escapeHTML(article.title)}</h3><p>${escapeHTML(article.desc)}</p><div class="card-end">読んでみる<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
 };
 const head = (title, sub, eyebrow='LIBRARY') => `<div class="page-head"><div class="crumb"><a href="#home">ホーム</a> / ${escapeHTML(title)}</div><span class="eyebrow">${escapeHTML(eyebrow)}</span><h1>${escapeHTML(title)}</h1><p>${escapeHTML(sub)}</p></div>`;
 function renderListing(categoryId = '') {
@@ -42,7 +44,7 @@ function render() {
     else {
       const category=categories.find(c=>c.id===app.category);
       const hasReading=category && Library.filter(articles,category.id).length>0;
-      main.innerHTML=head(app.name,app.description,'APPS')+`<div class="app-introduction"><div>${art(app)}</div><section><h2>${escapeHTML(app.heading || app.name)}</h2><p>${escapeHTML(app.body)}</p></section></div>${hasReading?`<aside class="app-reference" aria-label="参考の読みもの"><h2>参考の読みもの</h2><p>このテーマについて、もう少し読んでみたい方へ。</p><a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}の読みものを見る <span aria-hidden="true">→</span></a></aside>`:''}`;
+      main.innerHTML=head(app.name,app.description,'APPS')+`<div class="app-introduction"><div>${art(app)}</div><section><h2>${escapeHTML(app.heading || app.name)}</h2><p>${escapeHTML(app.body)}</p>${app.articleSlug?`<p><a href="#article/${encodeURIComponent(app.articleSlug)}">詳しい紹介を読む →</a></p>`:""}</section></div>${hasReading?`<aside class="app-reference" aria-label="参考の読みもの"><h2>参考の読みもの</h2><p>このテーマについて、もう少し読んでみたい方へ。</p><a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}の読みものを見る <span aria-hidden="true">→</span></a></aside>`:''}`;
     }
   } else if(route==='journal'||kind==='category') renderListing(kind==='category'?id:'');
   else if(kind==='article') {
