@@ -3,7 +3,9 @@
 ## 現在の作業（タグのアコーディオン・2026-10-16）
 
 - ユーザー指示により共有STGを切替。タグselectをdetails/summary内の折り返し配置へ変更。単一選択は維持、「すべて」で解除。閉じても選択中タグを表示。
-- 状態: STG公開・エージェントQA完了、本人QA待ち。本番未配備。
+- 状態: 2026-10-16 本人QA合格・公開指示を受領。本番runのprepare成功、production環境の本人承認待ち。まだ本番未配備。
+- 本番run: https://github.com/ing08/developing/actions/runs/38847675609
+- 承認後に公開version.json、ホーム・カテゴリ・記事・タグを確認し、Release URLと本記録を更新する。
 - URL: https://ing08.github.io/developing-stg/?v=tags-20261016#journal
 - ソースSHA: `83214dd24d4df6dd64a649f04217ac91afe7d269`
 - ZIP SHA256: `a3f5dfe63badf664d6256b397797b988765b2388e58aae83217aa0ef25165755`
