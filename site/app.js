@@ -1,6 +1,6 @@
 const main = document.querySelector('main');
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const art = app => app.img ? `<div class="media"><img src="assets/${escapeHTML(app.img)}" alt="" width="1200" height="800"></div>` : `<div class="media ${escapeHTML(app.artClass || '')}"><div class="app-art-inner"><div class="app-symbol" aria-hidden="true">${escapeHTML(app.symbol || app.name.slice(0,1))}</div><div class="app-title">${escapeHTML(app.name)}</div></div></div>`;
+const art = app => app.icon ? `<div class="media app-icon-art"><img src="assets/${escapeHTML(app.icon)}" alt="" width="512" height="512"></div>` : app.img ? `<div class="media"><img src="assets/${escapeHTML(app.img)}" alt="" width="1200" height="800"></div>` : `<div class="media ${escapeHTML(app.artClass || '')}"><div class="app-art-inner"><div class="app-symbol" aria-hidden="true">${escapeHTML(app.symbol || app.name.slice(0,1))}</div><div class="app-title">${escapeHTML(app.name)}</div></div></div>`;
 const appCard = app => `<a class="card" href="#app/${encodeURIComponent(app.id)}">${art(app)}<div class="card-content"><div class="meta"><span class="badge">アプリ</span></div><h3>${escapeHTML(app.name)}</h3><p>${escapeHTML(app.description)}</p><div class="card-end">紹介を読む<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
 const card = article => {
   const category = Library.categoryFor(article, categories);
@@ -46,7 +46,7 @@ function render() {
     else {
       const category=categories.find(c=>c.id===app.category);
       const hasReading=category && Library.filter(articles,category.id).length>0;
-      main.innerHTML=`<div class="page-head article-heading"><div class="crumb"><a href="#apps">アプリ</a> / ${escapeHTML(app.name)}</div><span class="eyebrow">APPS</span><h1>${escapeHTML(app.name)}</h1><p>${escapeHTML(app.description)}</p></div><div class="reader app-reader">${app.content}</div>${hasReading?`<aside class="app-reference" aria-label="参考の読みもの"><h2>参考の読みもの</h2><p>このテーマについて、もう少し読んでみたい方へ。</p><a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}の読みものを見る <span aria-hidden="true">→</span></a></aside>`:''}<div class="reader"><a class="back-link" href="#apps">← アプリ一覧へ</a></div>`;
+      main.innerHTML=`<div class="page-head article-heading"><div class="crumb"><a href="#apps">アプリ</a> / ${escapeHTML(app.name)}</div><span class="eyebrow">APPS</span>${app.icon?`<img class="app-heading-icon" src="assets/${escapeHTML(app.icon)}" width="96" height="96" alt="">`:""}<h1>${escapeHTML(app.name)}</h1><p>${escapeHTML(app.description)}</p></div><div class="reader app-reader">${app.content}</div>${hasReading?`<aside class="app-reference" aria-label="参考の読みもの"><h2>参考の読みもの</h2><p>このテーマについて、もう少し読んでみたい方へ。</p><a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}の読みものを見る <span aria-hidden="true">→</span></a></aside>`:''}<div class="reader"><a class="back-link" href="#apps">← アプリ一覧へ</a></div>`;
     }
   } else if(route==='journal'||kind==='category') renderListing(kind==='category'?id:'');
   else if(kind==='article') {
