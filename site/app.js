@@ -40,8 +40,9 @@ function render() {
     const app=apps.find(a=>a.id===id);
     if(!app)main.innerHTML=head('アプリが見つかりません','メニューからアプリを選んでください。');
     else {
-      const related=Library.filter(articles,app.category).filter(a=>app.category && a.category===app.category);
-      main.innerHTML=head(app.name,app.description,'APP NOTES')+`<div class="reader">${art(app)}<section><h2>${escapeHTML(app.heading || app.name)}</h2><p>${escapeHTML(app.body)}</p></section></div>${related.length?`<section class="section"><div class="section-head"><h2>関連する読みもの</h2></div><div class="grid">${related.map(card).join('')}</div></section>`:''}`;
+      const category=categories.find(c=>c.id===app.category);
+      const hasReading=category && Library.filter(articles,category.id).length>0;
+      main.innerHTML=head(app.name,app.description,'APPS')+`<div class="app-introduction"><div>${art(app)}</div><section><h2>${escapeHTML(app.heading || app.name)}</h2><p>${escapeHTML(app.body)}</p></section></div>${hasReading?`<aside class="app-reference" aria-label="参考の読みもの"><h2>参考の読みもの</h2><p>このテーマについて、もう少し読んでみたい方へ。</p><a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}の読みものを見る <span aria-hidden="true">→</span></a></aside>`:''}`;
     }
   } else if(route==='journal'||kind==='category') renderListing(kind==='category'?id:'');
   else if(kind==='article') {

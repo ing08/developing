@@ -13,3 +13,13 @@ nav a:hover{text-decoration:underline;text-underline-offset:5px}
 .cafe-scene img{border-radius:12px}.filters select{min-height:44px}
 
 main:focus{outline:none}.filter-field{display:flex;align-items:center;gap:8px;max-width:100%}
+
+.app-introduction{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;max-width:920px;margin:0 auto}
+.app-introduction .media{border-radius:20px}
+.app-introduction h2{margin-bottom:18px}
+.app-introduction p{margin-bottom:0}
+.app-reference{max-width:920px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--line)}
+.app-reference h2{font-size:16px;margin-bottom:8px}
+.app-reference p{font-size:13px;color:var(--muted);margin-bottom:8px}
+.app-reference a{display:inline-block;padding:10px 0;color:var(--accent);text-decoration:underline;text-underline-offset:5px;font-size:14px}
+@media(max-width:600px){.app-introduction{grid-template-columns:1fr;gap:24px}.app-introduction .media{border-radius:16px}}
