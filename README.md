@@ -3,7 +3,7 @@
 自作アプリと読みもの。猫カフェ風のホームを試作中。カテゴリ別テーマと共通寸法を維持。
 
 - STG: https://ing08.github.io/developing-stg/
-- 本番予定: https://ing08.github.io/developing/ （初回リリース未承認・未公開）
+- 本番: https://ing08.github.io/developing/ （2026-10-16 初回公開）
 - 既存家事記事: https://ing08.github.io/futari-kaji-notes/ （継続運用）
 - [公開手順](docs/release.md) / [STG引継ぎ](docs/staging.md)
 
