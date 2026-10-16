@@ -1,3 +1,10 @@
+## 最新状態: 紹介文の復元・3サイトのアイコン反映完了（2026-10-16）
+- 本人が最新紹介文を含む公開済み版への復元に「承認しました」と回答。自動承認レビュー通過後、GitHub productionも本人承認。
+- 復元run: https://github.com/ing08/developing/actions/runs/38867786142 （成功）
+- 本番source SHA: a9e15aba67ac2702a0e45b0fc506484da6c5dbac。STG run38864328167の同一ZIPを配備。
+- 公開後: version.json一致。catalog/app/base/indexと両アイコン・両背景の8資産SHA256が候補manifestと一致。ブラウザで買い物・64スタンプ・週末/月末戦の最新紹介文、両カードの新アイコンと背景、画像512px読込・横はみ出しなしを確認。
+- 前回誤って旧候補52e63c6を配備した影響は復元済み。以下の復元待ち記述は履歴。現在の未対応事項なし。
+- Kaji本番dpl_A9Mo1MytfMQuVGg6JCtgDPa9idNk、Media Shuffle本番dpl_BNqi6PXLtc6yCmwgq2pJpBk44Ub5も新アイコン公開・検証済み。詳細は各repoのicon-update記録。
 ## 最新の引継ぎ: 紹介文の復元待ち（2026-10-16）
 - アイコン本番公開run38866648026で52e63c6を指定したが、その前に別作業で紹介文更新a9e15abが公開されていた。今回の配備で紹介文を旧版へ戻してしまった。
 - 正しい復元先はa9e15aba67ac2702a0e45b0fc506484da6c5dbac / STG run38864328167。新アイコン・カード背景も含む。公開履歴は下記に保持。
