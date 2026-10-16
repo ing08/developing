@@ -14,11 +14,11 @@ function renderListing(categoryId = '') {
   main.innerHTML = head(category ? `${category.name}の読みもの` : '読みもの', category?.description || '暮らしのこと、つくったもののこと。気になる話をどうぞ。', category?.eyebrow || 'JOURNAL') + `
     <div class="filters">
       <div class="filter-field"><label for="category">カテゴリ</label><select id="category"><option value="">すべて</option>${categories.map(c => `<option value="${escapeHTML(c.id)}" ${c.id===categoryId?'selected':''}>${escapeHTML(c.name)}</option>`).join('')}</select></div>
-      <div class="filter-field"><label for="tag">タグ</label><select id="tag"><option value="">すべて</option>${Library.tags(scoped).map(t => `<option>${escapeHTML(t)}</option>`).join('')}</select></div>
       <span id="count" class="muted" role="status">${scoped.length}件</span>
-    </div><div class="grid" id="results">${scoped.length ? scoped.map(card).join('') : '<p>このカテゴリの記事はまだありません。</p>'}</div>`;
+    </div><details class="tag-filter"><summary>タグで絞り込む <span id="tag-selection">すべて</span></summary><fieldset class="tag-options"><legend class="visually-hidden">タグを1つ選ぶ</legend>${['',...Library.tags(scoped)].map(t=>`<label class="tag-option"><input type="radio" name="article-tag" value="${escapeHTML(t)}" ${t===''?'checked':''}><span>${t?'#'+escapeHTML(t):'すべて'}</span></label>`).join('')}</fieldset></details><div class="grid" id="results">${scoped.length ? scoped.map(card).join('') : '<p>このカテゴリの記事はまだありません。</p>'}</div>`;
   document.querySelector('#category').addEventListener('change', e => { location.hash=e.target.value ? `category/${encodeURIComponent(e.target.value)}` : 'journal'; });
-  document.querySelector('#tag').addEventListener('change', e => {
+  document.querySelector('.tag-options').addEventListener('change', e => {
+    document.querySelector('#tag-selection').textContent=e.target.value ? '#'+e.target.value : 'すべて';
     const result=Library.filter(articles,categoryId,e.target.value);
     document.querySelector('#results').innerHTML=result.length?result.map(card).join(''):'<p>条件に合う記事はありません。</p>';
     document.querySelector('#count').textContent=result.length+'件';

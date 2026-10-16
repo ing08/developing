@@ -23,3 +23,13 @@ main:focus{outline:none}.filter-field{display:flex;align-items:center;gap:8px;ma
 .app-reference p{font-size:13px;color:var(--muted);margin-bottom:8px}
 .app-reference a{display:inline-block;padding:10px 0;color:var(--accent);text-decoration:underline;text-underline-offset:5px;font-size:14px}
 @media(max-width:600px){.app-introduction{grid-template-columns:1fr;gap:24px}.app-introduction .media{border-radius:16px}}
+
+.tag-filter{margin:0 0 24px;border-block:1px solid var(--line)}
+.tag-filter summary{cursor:pointer;padding:12px 0;min-height:48px;font-size:14px;font-weight:700;overflow-wrap:anywhere}
+.tag-filter summary:focus-visible,.tag-option:focus-within{outline:3px solid var(--accent);outline-offset:3px}
+#tag-selection{font-size:12px;font-weight:400;color:var(--muted);margin-left:12px}
+.tag-options{border:0;padding:0 0 16px;margin:0;display:flex;flex-wrap:wrap;gap:10px}
+.tag-option{display:flex;align-items:center;gap:8px;min-height:44px;max-width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--surface);font-size:13px;overflow-wrap:anywhere}
+.tag-option input{margin:0;accent-color:var(--accent);flex-shrink:0}
+.tag-option:has(input:checked){background:var(--soft);border-color:var(--accent);font-weight:700}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
