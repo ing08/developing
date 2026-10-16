@@ -18,3 +18,11 @@
 - 第1ラウンド: コード・画像に必須修正なし。運用記録と実STGの照合で、Kajiが別タスクの買い物QAへ切替済みと判明。固定aliasを上書きせず、個別Previewで外観確認する計画へ修正。
 - 第2ラウンド: Kaji 338件と構文・文書・build、Media Shuffle 926件/59filesと型・server-only境界、記事サイト Python10件/Node2件と構文が成功。採用画像からの縮小pixel一致、manifest寸法、サイト/アプリ画像のbyte一致、Kaji distのbyte一致も成功。前ターンに通常Next.js build成功、以後コード差分なし。新規問題0件。
 - コミットは各リポジトリのアイコン変更を1単位とし、他作業の未コミット文書・設定を混在させない。配備結果は後段へ追記する。
+
+## 確認環境への反映完了
+- ソースSHA: b8843849f3395b90996ca307abca079cc51af30f。
+- Check run: https://github.com/ing08/developing/actions/runs/38861670225 （成功）。
+- STG run: https://github.com/ing08/developing-stg/actions/runs/38861733316 （成功）。
+- ZIP SHA256: e5bfb2fc07b4a5b351dd16785fcbb89c011d50394a496e7d5d0dc3cbb97c61db。
+- 確認URL: https://ing08.github.io/developing-stg/?v=b884384#apps 。version.jsonは対象SHAと一致。両画像読込512px、表示144px正方形、390px/1280pxで横はみ出しなし。
+- 本番は前回の6478f0db389ec0cf706e6a7c1dbde1096b39dd47を維持。本人QA・本番公開承認待ち。後続文書commitで配信物は変えない。
