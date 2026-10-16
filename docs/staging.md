@@ -3,7 +3,17 @@
 - 利用者の「品質ループを実施してqaさせてください」を受け、OGP確認版へ切替。最新STG a9e15abaの家事紹介・買い物リスト更新とカード背景を保持する。
 - 対象: 全10ページの初期HTMLにOGP/Xカードを生成し、共有URLを実体のあるパスへ移行。旧ハッシュURLは新URLへ移動。データ追加から自動生成、画像未指定は共通画像。
 - 品質ループ: 旧記事のホーム相対リンクを修正後、Python11件・Node5件・JS構文・差分・ビルド検査成功。紹介本文はa9e15abaと同一。詳細は[OGP運用・検証](social.md)。
-- 状態: 配備準備完了。本番未変更、本人QA・本番公開指示は未受領。配備後にSHA/run/ZIPハッシュと公開検証結果を追記する。
+- 状態: STG配備・エージェント品質確認完了。本人QA待ち。本番未変更。
+- 確認URL: https://ing08.github.io/developing-stg/?v=5dd87e0
+- 家事: https://ing08.github.io/developing-stg/app/kaji/?v=5dd87e0
+- 記事: https://ing08.github.io/developing-stg/article/choosing-chore-apps/?v=5dd87e0
+- ソースSHA: `5dd87e09d732242e450a65e0cd129b5c5f1cfdf9`（branch: feat/social-ogp）。mainへの統合・本番公開は未実施。
+- Check: https://github.com/ing08/developing/actions/runs/38865662466 （成功）
+- STG run: https://github.com/ing08/developing-stg/actions/runs/38865715611 （成功）
+- ZIP SHA256: `7d255b496306362ab64a4f7d5036b190298c6339f8754e2115abc593664ee646`
+- 公開検証: version.jsonのSHA一致。取得した候補ZIP・全ファイルハッシュ検証成功。全10ページの生HTMLをTwitterbot UAで取得し、配備manifestと一致。全OGP画像もHTTP200・manifestハッシュ一致。390pxで全10ページにはみ出し・画像欠落なし、console error0件。新規問題0件。
+- 本人QA: ページの表示・新URL・旧リンクからの移動・紹介内容を確認。OGPの画像と説明は初期HTMLで検証済み。STGのog:url/canonicalは同一ZIP昇格のため本番URLなので、SNS実サービスの最終表示は本番配備後の確認項目。
+- 後続の記録コミットは配信内容を変更しない。
 
 ## 家事アプリ紹介の最新化（2026-10-16・ローカル確認済み）
 
