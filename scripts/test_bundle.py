@@ -1,4 +1,5 @@
 import json, tempfile, unittest, zipfile
+from urllib.robotparser import RobotFileParser
 from pathlib import Path
 from bundle import build, verify, digest
 
@@ -26,4 +27,13 @@ class BundleTests(unittest.TestCase):
     def test_incomplete_sha_rejected(self):
         with tempfile.TemporaryDirectory() as t:
             with self.assertRaises(ValueError):build(Path(t),Path(t)/'out','abc')
+    def test_social_crawlers_allowed_without_opening_search_crawling(self):
+        with tempfile.TemporaryDirectory() as t:
+            root,out=self.fixture(t)
+            robots=RobotFileParser()
+            robots.parse((out/'site/robots.txt').read_text().splitlines())
+            for bot in ('Twitterbot','facebookexternalhit','LinkedInBot','Slackbot-LinkExpanding','Discordbot','TelegramBot','WhatsApp'):
+                self.assertTrue(robots.can_fetch(bot,'https://ing08.github.io/developing/article/story/'),bot)
+                self.assertTrue(robots.can_fetch(bot,'https://ing08.github.io/developing/assets/cover.jpg'),bot)
+            self.assertFalse(robots.can_fetch('Googlebot','https://ing08.github.io/developing/'))
 if __name__=='__main__':unittest.main()
