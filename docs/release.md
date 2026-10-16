@@ -60,3 +60,7 @@ staging_run_idとrollback_tagは排他。既存サイトfutari-kaji-notesへは�
 Pagesは両repoともGitHub Actions source。本番のproduction環境にrequired reviewer ing08、管理者バイパス禁止、main branch限定を設定。
 本人が実行したworkflowも本人が承認できるようprevent_self_review=false。自動エージェントによる承認禁止はAGENTS.mdにも記載する。
 STGのgithub-pages環境はmain branch限定。GITHUB_TOKENは各repoのPages権限のみ。STGは公開正本をread-only checkoutする。
+
+## 配備なしの検証
+
+`Verify STG candidate (no release)` にSTG run IDを指定すると、本番と同じ取得・ハッシュ検証だけを実行できる。本人QA合格・本番承認を意味せず、Pagesへの公開処理は含まない。
