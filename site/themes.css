@@ -1,1 +1,4 @@
-:root{--bg:#f6f7fb;--surface:#fff;--ink:#242c42;--muted:#616a7f;--line:#dce1ec;--accent:#3556cd;--accent-text:#fff;--soft:#edf0fc;--media:#eef1f7}body[data-theme="kaji"]{--bg:#f5f3ec;--surface:#fffdf7;--ink:#2d2b27;--muted:#626158;--line:#deddd4;--accent:#4c5c2f;--accent-text:#fff;--soft:#eef0df;--media:#eeecdf}body[data-theme="kaji"] .ing{background:#e3ef98;color:#2d2b27}body[data-theme="kaji"] .logo-mark{background:#2d2b27;color:#e3ef98}
+:root{--bg:#faf7f0;--surface:#fffdf8;--ink:#3d342d;--muted:#74685b;--line:#e2d9cb;--accent:#79563f;--accent-text:#fffdf8;--soft:#efe5d6;--media:#f1eadf}
+body[data-theme="kaji"]{--bg:#f5f3ec;--surface:#fffdf7;--ink:#2d2b27;--muted:#626158;--line:#deddd4;--accent:#4c5c2f;--accent-text:#fff;--soft:#eef0df;--media:#eeecdf}
+body[data-theme="kaji"] .ing{color:#4c5c2f}
+body[data-theme="kaji"] .logo-mark{color:#4c5c2f}

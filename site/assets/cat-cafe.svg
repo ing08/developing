@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" fill="none">
+<!-- Original vector illustration: afternoon window, sleeping cat, books and tea. -->
+<path d="M45 398V202C45 92 137 20 280 20c165 0 305 70 305 208v170Z" fill="#eee3cf"/>
+<path d="M296 230V106c0-36 29-65 65-65h81c36 0 65 29 65 65v124Z" fill="#fffaf0" stroke="#b89771" stroke-width="7"/>
+<path d="M304 176c30-31 56-35 88-12s66 20 107-11v70H304Z" fill="#d7dfc9"/>
+<circle cx="454" cy="96" r="21" fill="#efd8a2"/><path d="M400 45v181m-99-87h202" stroke="#b89771" stroke-width="6"/>
+<path d="M280 234h242" stroke="#88694e" stroke-width="9" stroke-linecap="round"/>
+<path d="M77 300h470v91H77Z" fill="#c5cdb2"/><path d="M68 310c0-20 14-31 35-31h404c21 0 35 11 35 31v18H68Z" fill="#d8ddc9"/>
+<path d="M58 393h519" stroke="#b89771" stroke-width="8" stroke-linecap="round"/>
+<!-- Sleeping ginger cat, relaxed closed eyes and curled tail -->
+<path d="M154 288c0-54 41-94 105-94 58 0 104 36 104 88 0 21-19 34-48 34H188c-23 0-34-10-34-28Z" fill="#c99569"/>
+<path d="M305 244c55 0 77 27 52 52-12 11-38 13-49 0" stroke="#b17b53" stroke-width="22" stroke-linecap="round"/>
+<path d="m139 249 2-48 37 28 33-5 31-24 4 51c10 35-13 62-53 62s-66-27-54-64Z" fill="#d8ac83"/>
+<path d="m150 222 16 12-17 6m81-20-15 14 18 5" fill="#bf8d69"/>
+<path d="M155 263q10 9 20 0m28 0q10 9 20 0" stroke="#684f3e" stroke-width="4" stroke-linecap="round"/>
+<path d="m185 275 5 4 5-4m-5 5v5m0 0q-5 6-10 0m10 0q5 6 10 0" stroke="#684f3e" stroke-width="3" stroke-linecap="round"/>
+<path d="m148 280-20-3m21 13-19 4m94-14 19-3m-19 13 20 4" stroke="#947052" stroke-width="2" stroke-linecap="round"/>
+<path d="m236 207 8 17m15-23 5 18m16-15 2 17" stroke="#b17b53" stroke-width="8" stroke-linecap="round"/>
+<!-- Small cafe table -->
+<path d="M390 353h196l-10 11H399Z" fill="#a77c54"/><path d="m421 365-11 52m146-52 10 52" stroke="#9a7351" stroke-width="7" stroke-linecap="round"/>
+<path d="M456 298h47v28c0 16-47 16-47 0Z" fill="#fffaf0" stroke="#a58a70" stroke-width="3"/>
+<path d="M504 303h8c18 0 16 23-8 23" stroke="#a58a70" stroke-width="4"/><ellipse cx="479" cy="340" rx="39" ry="5" fill="#d8c3a5"/>
+<path d="M475 282c-12-10 9-13 0-24m13 24c-12-10 9-13 0-24" stroke="#b7a58b" stroke-width="3" stroke-linecap="round"/>
+<path d="M400 344h44v7h-44Z" fill="#8f9b7b"/><path d="M403 334h38v9h-38Z" fill="#e6ccb0"/>
+<!-- Plant and bookshelf, no controls or tiles -->
+<path d="M109 169v62m0-28c-23-5-32-19-29-33 20 0 31 15 29 33m1-10c24-5 33-20 29-33-19 1-30 15-29 33" stroke="#89916d" stroke-width="4" fill="#aab394"/>
+<path d="M91 219h37l-5 28H96Z" fill="#bb8565"/>
+<path d="M69 252h119" stroke="#a77c54" stroke-width="7" stroke-linecap="round"/>
+<path d="M147 218v30m12-43v43m12-35 7 35" stroke="#a58a70" stroke-width="9"/>
+<path d="M93 353c10-9 18-9 28 0m-5 17c8-7 13-7 21 0" stroke="#b1bc9b" stroke-width="3" stroke-linecap="round"/>
+</svg>

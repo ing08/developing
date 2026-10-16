@@ -1,6 +1,6 @@
 # developING
 
-自作アプリと読みもの。明るいゲームメニュー風のホームとカテゴリ別テーマ。
+自作アプリと読みもの。猫カフェ風のホームを試作中。カテゴリ別テーマと共通寸法を維持。
 
 - STG: https://ing08.github.io/developing-stg/
 - 本番予定: https://ing08.github.io/developing/ （初回リリース未承認・未公開）
