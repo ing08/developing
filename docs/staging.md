@@ -3,7 +3,7 @@
 ## 現在の作業（紹介をアプリページへ移動・2026-10-16）
 
 - 指示: アプリ紹介は記事ではなくアプリページに置く。
-- 状態: STG配備・エージェント確認完了。本人QA待ち、本番未配備。
+- 状態: 本人QA・公開指示・GitHub本人承認を受領し、本番公開完了（2026-10-16）。
 - 家事: https://ing08.github.io/developing-stg/?v=6478f0d#app/kaji
 - Media Shuffle: https://ing08.github.io/developing-stg/?v=6478f0d#app/media-shuffle
 - ソースSHA: `6478f0db389ec0cf706e6a7c1dbde1096b39dd47`
@@ -13,6 +13,12 @@
 - 変更: 本文・画像・誘導カードの正本をcatalog.jsのapps.contentへ移動。読みものは従来3記事のみ。アプリ一覧に画像を使用。旧記事2URLは対応するappルートへ置換遷移。家事テーマをアプリ詳細にも適用。
 - 第1ラウンド: 紹介の配置・ナビ・戻り先・テーマをアプリページ用に修正。本文と画像・誘導リンクは移動前と完全一致。
 - 第2ラウンド: Python10件・Node2件・JS構文・CI成功。旧URL両方の遷移、アプリ一覧2件、読みもの3件、390pxの両アプリ横はみ出しなし、アプリナビ選択、コンソールエラー0を確認。既存3記事同一。新規問題0件。
+- 本番run: https://github.com/ing08/developing/actions/runs/38859825064 （成功）
+- Release: https://github.com/ing08/developing/releases/tag/deploy-38859825064-1
+- 本番家事: https://ing08.github.io/developing/#app/kaji
+- 本番Media Shuffle: https://ing08.github.io/developing/#app/media-shuffle
+- 本人QA・公開指示: 「いい感じですね」「品質ループしてリリースして」。production承認後「承認しました」と連絡を受領。
+- 公開後確認: version.jsonのSHAが上記候補と一致。両アプリ本文・CTAリンク、ホーム、390px両アプリの横はみ出しなし、旧家事記事URLのappルート移動、コンソールエラー0件。アプリ画像6枚の公開バイト列が候補manifestのSHA256と一致。
 - 後続記録コミットは配信物を変更しない。
 ## 前回の作業（アプリ内素材を参考にした本文画像・2026-10-16）
 
