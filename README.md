@@ -24,3 +24,5 @@ node --check site/data.js
 現在はデザイン確認用の初版。タグは仮分類、管理画面・自動記事作成・GA4は未導入。
 検索公開の設計が未確定のため、この初版は本番候補にもnoindexとrobots除外を残す。
 検索公開を始める変更は別候補としてSTGで確認する。検索除外はアクセス制限ではない。
+
+アプリとカテゴリの追加方法は [docs/content.md](docs/content.md)、画像生成のプロンプトと保存先は [docs/image-assets.md](docs/image-assets.md) を参照。

@@ -1,15 +1,60 @@
-const main=document.querySelector('main');
-const appCard=()=>`<a class="card" href="#app/kaji"><div class="media app-art"><div class="app-art-inner"><div class="app-symbol" aria-hidden="true">ϟ</div><div class="app-title">週末家事バトル</div></div></div><div class="card-content"><div class="meta"><span class="badge">アプリ</span><span>暮らしの道具</span></div><h3>週末家事バトル</h3><p>ふたりで家事に取り組むことをテーマにした、自作アプリ。</p><div class="card-end">紹介を読む<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
-const card=a=>`<a class="card" href="#article/${a.slug}"><div class="media"><img src="assets/${a.img}" alt="" width="1536" height="1024"></div><div class="card-content"><div class="meta"><span class="badge">読みもの · 家事</span><time>${a.date}</time></div><h3>${a.title}</h3><p>${a.desc}</p><div class="card-end">読んでみる<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
-const head=(title,sub,eyebrow='LIBRARY')=>`<div class="page-head"><div class="crumb"><a href="#home">ホーム</a> / ${title}</div><span class="eyebrow">${eyebrow}</span><h1>${title}</h1><p>${sub}</p></div>`;
-function render(){const route=location.hash.slice(1)||'home';document.body.dataset.theme=route==='category/kaji'||route.startsWith('article/')?'kaji':'default';document.querySelectorAll('nav a').forEach(a=>{const active=a.hash==='#'+(route==='home'?'home':route.startsWith('app')?'apps':'journal');if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-if(route==='home'){main.innerHTML=`<section class="hero"><div><span class="eyebrow">APPS & STORIES BY ING</span><h1>つくったアプリと、<br>日々の読みもの。</h1><p>猫のいるカフェで、ひと息つくように。<br>気になるアプリや記事を、ゆっくりどうぞ。</p><div class="hero-links"><a href="#apps">アプリを見にいく <span aria-hidden="true">→</span></a><a href="#journal">読みものを選ぶ <span aria-hidden="true">→</span></a></div></div><figure class="cafe-scene"><img src="assets/cat-cafe.svg" width="640" height="440" alt="窓辺で眠る茶トラ猫と、本とお茶を置いた小さなテーブル"></figure></section><section class="section"><div class="section-head"><h2>アプリ<small>APPS</small></h2><a href="#apps">すべて見る →</a></div><div class="grid">${appCard()}<div class="shelf-note"><span class="eyebrow">FROM MY LITTLE WORKSHOP</span><h2>小さくつくって、楽しむ。</h2><p>暮らしの中の「こんなのあったら」を、アプリに。ここには、自分でつくったものを置いています。</p><a class="back-link" href="#apps">アプリの棚をのぞく →</a></div></div></section><section class="section"><div class="section-head"><h2>読みもの<small>JOURNAL</small></h2><a href="#journal">すべて見る →</a></div><div class="grid">${articles.map(card).join('')}</div></section>`}
-else if(route==='apps'){main.innerHTML=head('アプリ','こんなの、つくりました。','APPS')+`<div class="grid">${appCard()}</div>`}
-else if(route==='app/kaji'){main.innerHTML=head('週末家事バトル','ふたりで家事に取り組むことをテーマにした、自作アプリ。','APP NOTES')+`<div class="reader"><div class="media app-art"><div class="app-art-inner"><div class="app-symbol" aria-hidden="true">ϟ</div><div class="app-title">週末家事バトル</div></div></div><section><h2>ふたりの家事を、少し楽しく。</h2><p>家事を一緒に始めるきっかけをつくるアプリです。</p><p>家事の分け方や、ふたりで無理なく続ける工夫は、読みものにもまとめています。</p><a class="back-link" href="#category/kaji">家事の読みものへ →</a></section></div>`}
-else if(route==='journal'||route==='category/kaji'){const kaji=route==='category/kaji';main.innerHTML=head(kaji?'家事の読みもの':'読みもの',kaji?'週末家事バトル · ふたりに合う家事の分け方や、道具選びのヒント。':'暮らしのこと、つくったもののこと。気になる話をどうぞ。',kaji?'HOUSEWORK FIGHT CLUB':'JOURNAL')+`<div class="filters"><label for="tag">タグ</label><select id="tag"><option value="">すべて</option>${[...new Set(articles.flatMap(a=>a.tags))].map(t=>`<option>${t}</option>`).join('')}</select><span id="count" class="muted" role="status">3件</span><a class="category-link" href="${kaji?'#journal':'#category/kaji'}">${kaji?'全カテゴリへ戻る':'家事カテゴリへ →'}</a></div><div class="grid" id="results">${articles.map(card).join('')}</div>`;document.querySelector('#tag').addEventListener('change',e=>{const result=articles.filter(a=>!e.target.value||a.tags.includes(e.target.value));document.querySelector('#results').innerHTML=result.map(card).join('');document.querySelector('#count').textContent=result.length+'件'})}
-else if(route.startsWith('article/')){const a=articles.find(a=>a.slug===route.split('/')[1]);if(a){main.innerHTML=`<div class="page-head article-heading"><div class="crumb"><a href="#journal">読みもの</a> / <a href="#category/kaji">家事</a></div><span class="eyebrow">HOUSEWORK FIGHT CLUB</span><h1>${a.title}</h1><p>${a.desc}</p><div class="tags">${a.tags.map(t=>`<span>#${t}</span>`).join('')}</div><time class="muted">${a.date}</time></div><article class="reader">${a.body}<a class="back-link" href="#category/kaji">← 家事の読みものへ</a></article>`}else main.innerHTML=head('記事が見つかりません','メニューから読みものを選んでください。')}
-else main.innerHTML=head('ページが見つかりません','メニューから行き先を選んでください。');
-document.title=(main.querySelector('h1')?.textContent||'ホーム')+' | developING';window.scrollTo(0,0)}
-window.addEventListener('hashchange',()=>{render();main.focus({preventScroll:true})});render();
-document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView()});
-
+const main = document.querySelector('main');
+const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const art = app => `<div class="media ${escapeHTML(app.artClass || '')}"><div class="app-art-inner"><div class="app-symbol" aria-hidden="true">${escapeHTML(app.symbol || app.name.slice(0,1))}</div><div class="app-title">${escapeHTML(app.name)}</div></div></div>`;
+const appCard = app => `<a class="card" href="#app/${encodeURIComponent(app.id)}">${art(app)}<div class="card-content"><div class="meta"><span class="badge">アプリ</span></div><h3>${escapeHTML(app.name)}</h3><p>${escapeHTML(app.description)}</p><div class="card-end">紹介を読む<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
+const card = article => {
+  const category = Library.categoryFor(article, categories);
+  return `<a class="card" href="#article/${encodeURIComponent(article.slug)}"><div class="media"><img src="assets/${escapeHTML(article.img)}" alt="" width="1536" height="1024"></div><div class="card-content"><div class="meta"><span class="badge">${escapeHTML(category?.name || '読みもの')}</span><time>${escapeHTML(article.date)}</time></div><h3>${escapeHTML(article.title)}</h3><p>${escapeHTML(article.desc)}</p><div class="card-end">読んでみる<span class="arrow" aria-hidden="true">→</span></div></div></a>`;
+};
+const head = (title, sub, eyebrow='LIBRARY') => `<div class="page-head"><div class="crumb"><a href="#home">ホーム</a> / ${escapeHTML(title)}</div><span class="eyebrow">${escapeHTML(eyebrow)}</span><h1>${escapeHTML(title)}</h1><p>${escapeHTML(sub)}</p></div>`;
+function renderListing(categoryId = '') {
+  const category = categories.find(c => c.id === categoryId);
+  if (categoryId && !category) { main.innerHTML=head('カテゴリが見つかりません','メニューから読みものを選んでください。'); return; }
+  const scoped = Library.filter(articles, categoryId);
+  main.innerHTML = head(category ? `${category.name}の読みもの` : '読みもの', category?.description || '暮らしのこと、つくったもののこと。気になる話をどうぞ。', category?.eyebrow || 'JOURNAL') + `
+    <div class="filters">
+      <div class="filter-field"><label for="category">カテゴリ</label><select id="category"><option value="">すべて</option>${categories.map(c => `<option value="${escapeHTML(c.id)}" ${c.id===categoryId?'selected':''}>${escapeHTML(c.name)}</option>`).join('')}</select></div>
+      <div class="filter-field"><label for="tag">タグ</label><select id="tag"><option value="">すべて</option>${Library.tags(scoped).map(t => `<option>${escapeHTML(t)}</option>`).join('')}</select></div>
+      <span id="count" class="muted" role="status">${scoped.length}件</span>
+    </div><div class="grid" id="results">${scoped.length ? scoped.map(card).join('') : '<p>このカテゴリの記事はまだありません。</p>'}</div>`;
+  document.querySelector('#category').addEventListener('change', e => { location.hash=e.target.value ? `category/${encodeURIComponent(e.target.value)}` : 'journal'; });
+  document.querySelector('#tag').addEventListener('change', e => {
+    const result=Library.filter(articles,categoryId,e.target.value);
+    document.querySelector('#results').innerHTML=result.length?result.map(card).join(''):'<p>条件に合う記事はありません。</p>';
+    document.querySelector('#count').textContent=result.length+'件';
+  });
+}
+function render() {
+  const route=location.hash.slice(1)||'home';
+  const [kind,id]=route.split('/');
+  document.body.dataset.theme=Library.themeFor(route,articles,categories);
+  document.querySelectorAll('nav a').forEach(a=>{
+    const active=a.hash==='#'+(route==='home'?'home':kind==='app'||route==='apps'?'apps':'journal');
+    if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+  });
+  if(route==='home') {
+    main.innerHTML=`<section class="hero"><div><span class="eyebrow">APPS & STORIES BY ING</span><h1>つくったアプリと、<br>日々の読みもの。</h1><p>猫のいるカフェで、ひと息つくように。<br>気になるアプリや記事を、ゆっくりどうぞ。</p><div class="hero-links"><a href="#apps">アプリを見にいく <span aria-hidden="true">→</span></a><a href="#journal">読みものを選ぶ <span aria-hidden="true">→</span></a></div></div><figure class="cafe-scene"><img src="assets/cat-cafe-generated.webp" width="1200" height="800" alt="陽の差す猫カフェで、ソファに眠る茶トラ猫。本とお茶を置いた木のテーブル"></figure></section><section class="section"><div class="section-head"><h2>アプリ<small>APPS</small></h2><a href="#apps">すべて見る →</a></div><div class="grid">${apps.map(appCard).join('')}${apps.length===1?'<div class="shelf-note"><span class="eyebrow">FROM MY LITTLE WORKSHOP</span><h2>小さくつくって、楽しむ。</h2><p>日々の「こんなのあったら」を、少しずつかたちに。自分でつくったアプリをここに並べています。</p></div>':''}</div></section><section class="section"><div class="section-head"><h2>読みもの<small>JOURNAL</small></h2><a href="#journal">すべて見る →</a></div><div class="grid">${articles.map(card).join('')}</div></section>`;
+  } else if(route==='apps') {
+    main.innerHTML=head('アプリ','こんなの、つくりました。','APPS')+`<div class="grid">${apps.map(appCard).join('')}</div>`;
+  } else if(kind==='app') {
+    const app=apps.find(a=>a.id===id);
+    if(!app)main.innerHTML=head('アプリが見つかりません','メニューからアプリを選んでください。');
+    else {
+      const related=Library.filter(articles,app.category).filter(a=>app.category && a.category===app.category);
+      main.innerHTML=head(app.name,app.description,'APP NOTES')+`<div class="reader">${art(app)}<section><h2>${escapeHTML(app.heading || app.name)}</h2><p>${escapeHTML(app.body)}</p></section></div>${related.length?`<section class="section"><div class="section-head"><h2>関連する読みもの</h2></div><div class="grid">${related.map(card).join('')}</div></section>`:''}`;
+    }
+  } else if(route==='journal'||kind==='category') renderListing(kind==='category'?id:'');
+  else if(kind==='article') {
+    const article=articles.find(a=>a.slug===id);
+    if(!article)main.innerHTML=head('記事が見つかりません','メニューから読みものを選んでください。');
+    else {
+      const category=Library.categoryFor(article,categories);
+      main.innerHTML=`<div class="page-head article-heading"><div class="crumb"><a href="#journal">読みもの</a>${category?` / <a href="#category/${encodeURIComponent(category.id)}">${escapeHTML(category.name)}</a>`:''}</div><span class="eyebrow">${escapeHTML(category?.eyebrow||'JOURNAL')}</span><h1>${escapeHTML(article.title)}</h1><p>${escapeHTML(article.desc)}</p><div class="tags">${(article.tags||[]).map(t=>`<span>#${escapeHTML(t)}</span>`).join('')}</div><time class="muted">${escapeHTML(article.date)}</time></div><article class="reader">${article.body}<a class="back-link" href="#journal">← 読みもの一覧へ</a></article>`;
+    }
+  } else main.innerHTML=head('ページが見つかりません','メニューから行き先を選んでください。');
+  document.title=(main.querySelector('h1')?.textContent||'ホーム')+' | developING';
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',()=>{render();main.focus({preventScroll:true});});
+render();
+document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
