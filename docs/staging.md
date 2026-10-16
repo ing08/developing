@@ -1,3 +1,27 @@
+## 家事アプリ紹介の最新化（2026-10-16・本番公開完了）
+
+- 利用者の「アプリ紹介が陳腐化してないか確認して更新」、対象はGitHub Pagesと回答。
+- 正本site/catalog.jsの家事紹介だけを変更。買い物リスト/手動更新/2人参加条件、現行主ナビ、64スタンプ、週末戦の開始操作と月末戦の開始条件を反映。固定の「約30秒」は削除。カレンダーの日付詳細を案内。画像・外部CTA・他アプリ・既存記事は保持。
+- 第1ラウンド: 上記の不足とカレンダー説明の重複を修正。catalog.jsの参照版を更新。
+- 第2ラウンド: 公開済みアプリcbfd69cの仕様・実装と照合。Python10件・Node2件・catalog構文・差分検査成功。Python初回はWindows sandboxのtemp cleanup権限で失敗し、通常権限で全件成功。他アプリとカテゴリのデータ同一を検査。ローカル390pxは横はみ出しなし、デスクトップの追記を目視、console error/warn0。新規問題0件。
+- 2026-10-16 利用者が切替確認後に「品質ループを実施してqaさせてください」と指示。カード背景候補52e63c6を保持し、紹介文を重ねてstg確認へ進める。本番未変更、本人QA・本番指示は未受領。
+
+- 確認URL: https://ing08.github.io/developing-stg/?v=a9e15ab#app/kaji
+- ソースSHA: `a9e15aba67ac2702a0e45b0fc506484da6c5dbac`
+- Check: https://github.com/ing08/developing/actions/runs/38864290462 （成功）
+- STG: https://github.com/ing08/developing-stg/actions/runs/38864328167 （成功）
+- ZIP SHA256: `d1e882478bde2f5f252425e3b7870efaff35381230d7e8519e63c067fb82b4d0`
+- 公開STG確認: version.jsonのソースSHA一致。更新本文・外部CTAを確認。390pxで横はみ出しなし、買い物の共有条件・更新方法を目視確認。console error/warn 0件。表示幅の一時設定は解除済み。
+- 本人QA: 買い物の説明、バトルのまとまりと開始条件、スマホでの読みやすさを確認する。本番未変更。後続の記録コミットは配信物を変更しない。
+- 2026-10-16 本人が上記QA候補の案内に続けて「品質ループを実施してリリースしてください」と指示。
+- リリース前品質ループ: QA後は記録文書のみ変更。STG成功・公開SHA一致・ZIPと全ファイルのハッシュ検証成功。既存の内容/リンク/390px表示・12テスト・CI検証結果と照合し、新規問題0件。
+- 本番run: https://github.com/ing08/developing/actions/runs/38865187996 。QA済みSTG run 38864328167のZIPを指定して起動。production環境の本人承認後に配備される。
+
+- 本人のGitHub承認と「しました」の連絡を受領。本番run 38865187996は成功。
+- Release: https://github.com/ing08/developing/releases/tag/deploy-38865187996-1
+- 本番: https://ing08.github.io/developing/#app/kaji
+- 公開後確認: source SHAがQA対象a9e15abと一致。紹介本文・CTA・ホームの更新要約を確認。390pxで横はみ出しなし、本文を目視。console error/warn 0件。品質ループ完了、新規問題0件。
+
 ## カード背景の改善（2026-10-16）
 
 - 本人の「記事サイトのカードの背景寂しいな」「続けてください」を受け、現在のアイコンQA候補を更新。本番は未変更。
