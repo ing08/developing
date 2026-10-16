@@ -33,3 +33,16 @@ main:focus{outline:none}.filter-field{display:flex;align-items:center;gap:8px;ma
 .tag-option input{margin:0;accent-color:var(--accent);flex-shrink:0}
 .tag-option:has(input:checked){background:var(--soft);border-color:var(--accent);font-weight:700}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Article images and full-card app links. */
+.reader figcaption{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+.reader .article-hero{margin:24px 0 32px}
+.reader .app-cta{display:grid;grid-template-columns:148px minmax(0,1fr);gap:22px;align-items:center;padding:24px;margin:28px 0;background:var(--surface);border:2px solid var(--accent);border-radius:20px;text-decoration:none;box-shadow:0 6px 0 var(--soft)}
+.reader .app-cta:hover{background:var(--soft)}
+.reader .app-cta img{aspect-ratio:1;object-fit:cover;border-radius:12px}
+.app-cta-copy{display:flex;flex-direction:column;gap:8px;min-width:0;overflow-wrap:anywhere}
+.app-cta-label{font:700 10px monospace;letter-spacing:2px;color:var(--accent)}
+.app-cta-copy strong{font-size:23px;line-height:1.4}
+.app-cta-copy>span:not([class]){font-size:14px}
+.app-cta-copy small{font-size:12px;color:var(--muted)}
+.app-cta-button{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;background:var(--accent);color:var(--accent-text);padding:12px 18px;border-radius:10px;font-size:14px;font-weight:700;margin-top:6px}
+@media(max-width:600px){.reader .app-cta{grid-template-columns:1fr;padding:20px;gap:16px}.reader .app-cta img{aspect-ratio:3/2;max-height:180px}.app-cta-copy strong{font-size:22px}}
