@@ -1,6 +1,21 @@
 # STG引継ぎ
 
-## 現在の作業（タグのアコーディオン・2026-10-16）
+## 現在の作業（アプリ紹介記事2本・2026-10-16）
+
+- 指示: 既存記事を参考に、週末家事バトルとMedia Shuffleの紹介記事をURL付きで作成し、STGで本人確認する。
+- 状態: STG配備・エージェント検証完了。本人QA待ち。本番未配備。
+- 家事記事: https://ing08.github.io/developing-stg/?v=512e5e9#article/weekend-kaji-introduction
+- 写真記事: https://ing08.github.io/developing-stg/?v=512e5e9#article/media-shuffle-introduction
+- ソースSHA: `512e5e9372c9727210dd81db6fb3fd26dc955245`
+- STG run: https://github.com/ing08/developing-stg/actions/runs/38854926950 （成功）
+- Check run: https://github.com/ing08/developing/actions/runs/38854895144 （成功）
+- ZIP SHA256: `fcd2dc614857ca081c6768b3f830aada5f1287fa1599eb4bb052602ee89a4ef5`
+- 変更: 記事2本、写真カテゴリとMedia Shuffleアプリを追加。各アプリ詳細から記事へ誘導。既存3記事のデータは維持。
+- 第1ラウンド: 実アプリ画面と公開aboutの機能・利用条件・URLに照合。記事カードにアプリ表示を使い、写真カテゴリと記事への導線を整備。
+- 第2ラウンド: Python 10件・Node 2件とJS構文・bundle検証が成功。ローカル390pxで両記事の表示と横はみ出しなし、一覧5件・写真カテゴリ1件、アプリ詳細リンクを確認。公開STGで両記事の本文とリンク、コンソールエラー0件、version.jsonのSHA一致を確認。新規問題0件。
+- 確認操作: 上記2記事で文体・内容・スマホ表示を確認し、本文のアプリリンクを開く。
+- 後続の記録コミットは配信物を変更しない。
+## 前回の作業（タグのアコーディオン・2026-10-16）
 
 - ユーザー指示により共有STGを切替。タグselectをdetails/summary内の折り返し配置へ変更。単一選択は維持、「すべて」で解除。閉じても選択中タグを表示。
 - 状態: 2026-10-16 本人QA合格・公開指示・GitHub本人承認を受領。本番run成功、公開済み。
