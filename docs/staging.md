@@ -1,6 +1,21 @@
 # STG引継ぎ
 
-## 現在の作業（アプリ紹介記事2本・2026-10-16）
+## 現在の作業（記事画像・アプリ誘導カード・2026-10-16）
+
+- 指示: 記事の画像不足を改善し、アプリへの誘導をカードで強調。今回の修正依頼に基づき共有STGを更新。
+- 状態: STG配備・エージェント確認完了。本人QA待ち。本番未配備。
+- 家事記事: https://ing08.github.io/developing-stg/?v=15fbd49#article/weekend-kaji-introduction
+- 写真記事: https://ing08.github.io/developing-stg/?v=15fbd49#article/media-shuffle-introduction
+- ソースSHA: `15fbd496d893053ad686964fdc555a580330fccf`
+- STG run: https://github.com/ing08/developing-stg/actions/runs/38855729648 （成功）
+- Check run: https://github.com/ing08/developing/actions/runs/38855689619 （成功）
+- ZIP SHA256: `ef95bbf382fdf968125d02fe00f6e790d83d54ba2b158a9b8aa880c3d54121ce`
+- 変更: 各記事に生成イラスト・キャプション、一覧サムネイル、導入直後と記事末尾に画像付きアプリリンクカード。カード全体を1リンクとし、利用条件と48px以上のボタン表示を付与。画像は1200×800 WebP。生成元・プロンプトはimage-assets.mdに記録。
+- 品質観点: 画像と本文の一致、リンク先・利用条件、PC/390pxでの表示・キーボードフォーカス、画像容量と代替テキスト、既存記事維持。追加の未対応観点なし。
+- 第1ラウンド: Media Shuffle末尾の説明リンクのHTML不備1件を修正。
+- 第2ラウンド: Python 10件・Node 2件、JS構文・CI成功。両記事390px横はみ出しなし、一覧5件の画像欠落なし、カード各2件、既存3記事同一。公開STGで画像ロード・カード表示・version.json一致、コンソールエラー0件。新規問題0件。
+- 後続の記録コミットは配信物を変更しない。
+## 前回の作業（アプリ紹介記事2本・2026-10-16）
 
 - 指示: 既存記事を参考に、週末家事バトルとMedia Shuffleの紹介記事をURL付きで作成し、STGで本人確認する。
 - 状態: STG配備・エージェント検証完了。本人QA待ち。本番未配備。
