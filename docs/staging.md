@@ -1,6 +1,20 @@
 # STG引継ぎ
 
-## 現在の作業（アプリ内素材を参考にした本文画像・2026-10-16）
+## 現在の作業（紹介をアプリページへ移動・2026-10-16）
+
+- 指示: アプリ紹介は記事ではなくアプリページに置く。
+- 状態: STG配備・エージェント確認完了。本人QA待ち、本番未配備。
+- 家事: https://ing08.github.io/developing-stg/?v=6478f0d#app/kaji
+- Media Shuffle: https://ing08.github.io/developing-stg/?v=6478f0d#app/media-shuffle
+- ソースSHA: `6478f0db389ec0cf706e6a7c1dbde1096b39dd47`
+- STG run: https://github.com/ing08/developing-stg/actions/runs/38858623170 （成功）
+- Check run: https://github.com/ing08/developing/actions/runs/38858553002 （成功）
+- ZIP SHA256: `210aabf01d7f0ce635a480a75fa8aebc0df49569f28a181c3cefc322316068a9`
+- 変更: 本文・画像・誘導カードの正本をcatalog.jsのapps.contentへ移動。読みものは従来3記事のみ。アプリ一覧に画像を使用。旧記事2URLは対応するappルートへ置換遷移。家事テーマをアプリ詳細にも適用。
+- 第1ラウンド: 紹介の配置・ナビ・戻り先・テーマをアプリページ用に修正。本文と画像・誘導リンクは移動前と完全一致。
+- 第2ラウンド: Python10件・Node2件・JS構文・CI成功。旧URL両方の遷移、アプリ一覧2件、読みもの3件、390pxの両アプリ横はみ出しなし、アプリナビ選択、コンソールエラー0を確認。既存3記事同一。新規問題0件。
+- 後続記録コミットは配信物を変更しない。
+## 前回の作業（アプリ内素材を参考にした本文画像・2026-10-16）
 
 - 指示: 記事本文にも画像を追加し、生成画像は各アプリ内のコンテンツを参考にする。
 - 状態: STG配備・エージェント検証完了。本人QA待ち。本番未配備。
