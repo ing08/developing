@@ -48,3 +48,13 @@ main:focus{outline:none}.filter-field{display:flex;align-items:center;gap:8px;ma
 @media(max-width:600px){.reader .app-cta{grid-template-columns:1fr;padding:20px;gap:16px}.reader .app-cta img{aspect-ratio:3/2;max-height:180px}.app-cta-copy strong{font-size:22px}}
 
 .media.app-icon-art{padding:24px;background:var(--soft)}.media.app-icon-art img{width:144px;height:144px;max-width:100%;border-radius:26px;object-fit:contain}.app-heading-icon{width:96px;height:96px;border-radius:20px;margin-bottom:20px}.reader .app-cta img{width:100%;aspect-ratio:1;object-fit:contain}.reader .app-cta img{max-width:180px;height:auto}@media(max-width:600px){.reader .app-cta img{width:96px;height:96px;aspect-ratio:1;justify-self:start}}
+
+/* Decorative scenes stay behind the approved app icons. */
+.media.app-icon-art{position:relative;isolation:isolate;overflow:hidden}
+.media.app-icon-art img{position:relative;z-index:1;box-shadow:0 14px 28px #2434431c,0 3px 8px #24344314;transform:rotate(-4deg)}
+.media.app-icon-art::before{content:"";position:absolute;inset:0;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat}
+.media.app-icon-art[data-app="kaji"]{background:radial-gradient(ellipse at 75% 20%,#fffdeb 0,transparent 60%),linear-gradient(135deg,#e4edb7,#f7f5dc 62%,#e2ebc6)}
+.media.app-icon-art[data-app="kaji"]::before{background-image:url("assets/kaji-card-scene.svg")}
+.media.app-icon-art[data-app="media-shuffle"]{background:radial-gradient(ellipse at 22% 10%,#f4e9db 0,transparent 65%),linear-gradient(135deg,#e3e8ed,#c9d9e6)}
+.media.app-icon-art[data-app="media-shuffle"]::before{background-image:url("assets/media-card-scene.svg")}
+.media.app-icon-art[data-app="media-shuffle"] img{transform:rotate(5deg)}
