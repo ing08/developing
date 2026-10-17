@@ -18,22 +18,21 @@ function renderListing(categoryId = '') {
       <div class="filter-field"><label for="category">カテゴリ</label><select id="category"><option value="">すべて</option>${categories.map(c => `<option value="${escapeHTML(c.id)}" ${c.id===categoryId?'selected':''}>${escapeHTML(c.name)}</option>`).join('')}</select></div>
       <span id="count" class="muted" role="status">${scoped.length}件</span>
     </div><details class="tag-filter"><summary>タグで絞り込む <span id="tag-selection">すべて</span></summary><fieldset class="tag-options"><legend class="visually-hidden">タグを1つ選ぶ</legend>${['',...Library.tags(scoped)].map(t=>`<label class="tag-option"><input type="radio" name="article-tag" value="${escapeHTML(t)}" ${t===''?'checked':''}><span>${t?'#'+escapeHTML(t):'すべて'}</span></label>`).join('')}</fieldset></details><div class="grid" id="results">${scoped.length ? scoped.map(card).join('') : '<p>このカテゴリの記事はまだありません。</p>'}</div>`;
-  document.querySelector('#category').addEventListener('change', e => { location.hash=e.target.value ? `category/${encodeURIComponent(e.target.value)}` : 'journal'; });
+  document.querySelector('#category').addEventListener('change', e => { location.href=new URL(Routes.path(e.target.value ? `category/${encodeURIComponent(e.target.value)}` : 'journal'),document.baseURI).href; });
   document.querySelector('.tag-options').addEventListener('change', e => {
     document.querySelector('#tag-selection').textContent=e.target.value ? '#'+e.target.value : 'すべて';
     const result=Library.filter(articles,categoryId,e.target.value);
     document.querySelector('#results').innerHTML=result.length?result.map(card).join(''):'<p>条件に合う記事はありません。</p>';
     document.querySelector('#count').textContent=result.length+'件';
+    normalizeLinks();
   });
 }
 function render() {
-  let route=location.hash.slice(1)||'home';
-  const legacyApp=apps.find(app=>route==='article/'+app.legacyArticleSlug);
-  if(legacyApp){route='app/'+legacyApp.id;history.replaceState(null,'','#'+route);}
+  const route=document.documentElement.dataset.route || 'home';
   const [kind,id]=route.split('/');
   document.body.dataset.theme=kind==='app' ? (categories.find(c=>c.id===apps.find(a=>a.id===id)?.category)?.theme || 'default') : Library.themeFor(route,articles,categories);
   document.querySelectorAll('nav a').forEach(a=>{
-    const active=a.hash==='#'+(route==='home'?'home':kind==='app'||route==='apps'?'apps':'journal');
+    const active=a.href===new URL(Routes.path(route==='home'?'home':kind==='app'||route==='apps'?'apps':'journal'),document.baseURI).href;
     if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   if(route==='home') {
@@ -58,8 +57,25 @@ function render() {
     }
   } else main.innerHTML=head('ページが見つかりません','メニューから行き先を選んでください。');
   document.title=(main.querySelector('h1')?.textContent||'ホーム')+' | developING';
-  window.scrollTo(0,0);
+  normalizeLinks();
+  if(location.hash) {
+    try { document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView(); } catch { /* Ignore malformed fragments. */ }
+  }
 }
-window.addEventListener('hashchange',()=>{render();main.focus({preventScroll:true});});
-render();
+function normalizeLinks() {
+  document.querySelectorAll('a[href]').forEach(a => {
+    a.setAttribute('href', Routes.link(a.getAttribute('href'),document.baseURI,location.href,articles,apps));
+  });
+}
+function redirectLegacy() {
+  const route=Routes.legacy(location.hash,apps);
+  if (!route) return false;
+  const target=new URL(Routes.path(route),document.baseURI);
+  target.search=location.search;
+  location.replace(target.href);
+  return true;
+}
+window.addEventListener('hashchange',redirectLegacy);
+normalizeLinks();
+if (!redirectLegacy()) render();
 document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});

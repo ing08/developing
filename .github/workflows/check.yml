@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - run: node --check site/app.js && node --check site/data.js && node --check site/catalog.js && node --check site/library.js
-      - run: node --test scripts/library.test.cjs
+      - run: node --check site/app.js && node --check site/data.js && node --check site/catalog.js && node --check site/library.js && node --check site/routes.js
+      - run: node --test scripts/*.test.cjs
       - run: python3 scripts/bundle.py build "$GITHUB_SHA"

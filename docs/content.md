@@ -1,5 +1,7 @@
 # アプリ・カテゴリの追加
 
+- SNSカードは登録データからビルド時に自動生成する。画像を別指定する場合はogImageへsite/assets内のファイル名を指定する。[OGP運用](social.md)を参照。
+
 - `site/catalog.js` のcategoriesにid/name/theme/descriptionを追加。theme未指定は共通配色。独自色はthemes.cssに `body[data-theme="id"]` として追加する。
 - 同ファイルのappsへ紹介してよい情報を追加。公開済みのアプリだけを掲載する。categoryは任意。
 - `site/data.js` の記事へcategoryを指定。tagsは任意の配列。本文HTMLは管理者が確認した内容のみ。

@@ -1,5 +1,5 @@
 """Build once, verify, and promote the exact ZIP tested in STG."""
-import hashlib, json, re, shutil, sys, zipfile
+import hashlib, json, re, shutil, subprocess, sys, zipfile
 from pathlib import Path
 
 def digest(data): return hashlib.sha256(data).hexdigest()
@@ -10,8 +10,10 @@ def build(source, output, sha):
     site=output/'site'
     if site.exists(): shutil.rmtree(site)
     shutil.copytree(source,site)
+    if (site/'catalog.js').exists():
+        subprocess.run(['node', str(Path(__file__).with_name('social.cjs')), str(site.resolve())], check=True)
     (site/'.nojekyll').write_text('',encoding='utf-8')
-    (site/'robots.txt').write_text('User-agent: *\nDisallow: /\n',encoding='utf-8')
+    (site/'robots.txt').write_text(''.join(f'User-agent: {bot}\nAllow: /\n\n' for bot in ('Twitterbot', 'facebookexternalhit', 'Facebot', 'LinkedInBot', 'Slackbot', 'Slackbot-LinkExpanding', 'Discordbot', 'TelegramBot', 'WhatsApp')) + 'User-agent: *\nDisallow: /\n',encoding='utf-8')
     (site/'version.json').write_text(json.dumps({'repository':'ing08/developing','source_sha':sha}),encoding='utf-8')
     manifest={'repository':'ing08/developing','source_sha':sha,'files':{}}
     for p in sorted(site.rglob('*')):
