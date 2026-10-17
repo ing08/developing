@@ -1,3 +1,18 @@
+## 今日の記事追加（2026-10-17・本人QA待ち）
+
+- 記事: 家事の見える化とは？ふたりの分担に活かす方法と注意点。本文3画像と一覧用サムネイルを追加。FAQを開閉式にし、末尾をサイト内アプリ紹介リンクへ変更。
+- 最新mainとOGP対応を統合。既存3記事・アプリ紹介・CSS・アイコンは保持。
+- QA対象: `742b3ede457688019b795b0ad9413ce95de1faff`（content/visualizing-housework）。main統合・本番配備は未実施。
+- 確認URL: https://ing08.github.io/developing-stg/article/visualizing-housework/?v=742b3ed
+- Check成功: https://github.com/ing08/developing/actions/runs/38994810421
+- STG成功: https://github.com/ing08/developing-stg/actions/runs/38994846852
+- ZIP SHA256: `8dd22ccc10282d6174f0ae9853b8a25de7549c841face88400dfe8d60682983a`
+- 品質観点: 本文一致、既存内容保持、画像の比率と読込、FAQ・紹介リンク、スマホ表示、一覧、共有URLとOGP、配備SHAとZIP一致。追加観点は並行OGP対応と最新紹介の保持。それ以外の漏れ候補なし。
+- 第1ラウンド: FAQ形式・画像ローカル参照・紹介リンクを整備。OGP統合時のindexと公開履歴の競合を解消。
+- 第2ラウンド: Python11件・Node5件成功、JS構文・差分検査合格。本文3画像読込とFAQ開閉、紹介リンク、390px記事・一覧および1280px一覧の横はみ出しなし。統合後の記事表示・実URL・OGPを確認。新規問題0件。
+- 公開STG: version.json、新記事HTML、画像4枚がHTTP取得成功・manifestハッシュ一致。候補ZIP全ファイルの検証成功。390px表示・サイト内紹介リンクを確認。
+- 状態: 本人QA待ち。本番公開は本人QA後、productionのGitHub本人承認を通して同一ZIPを昇格する。後続記録コミットは配信物を変更しない。
+- OGP画像の絶対URLは本番を指すため、新画像は本番昇格までSNS実サービスから取得できない。検索除外・解析なしを維持。
 ## OGPと共有URLの導入（2026-10-16）
 
 - 利用者の「品質ループを実施してqaさせてください」を受け、OGP確認版へ切替。最新STG a9e15abaの家事紹介・買い物リスト更新とカード背景を保持する。
