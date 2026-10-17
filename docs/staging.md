@@ -1,3 +1,11 @@
+## 本番公開完了（2026-10-17・家事の見える化）
+
+- 本人のGitHub承認後、本番run 38995233902が成功。以下の承認待ち記述は履歴。
+- 公開記事: https://ing08.github.io/developing/article/visualizing-housework/
+- Release: https://github.com/ing08/developing/releases/tag/deploy-38995233902-1
+- 本番source SHA: 742b3ede457688019b795b0ad9413ce95de1faff。QA済みSTG run38994846852と同一ZIPを配備。
+- 公開後確認: version.json一致。新記事HTML・data/catalog/app・画像4枚のHTTP取得とmanifestハッシュ一致。ブラウザで本文表示、390pxの横はみ出しなし、OGP画像とcanonicalが本番URLを指すことを確認。console error0件。品質ループ完了、新規問題0件。
+- OGP画像も本番に配備済み。SNS実サービスのキャッシュ・カード展開は未検証。検索除外・解析なしは既存方針を維持。
 ## 公開前品質ループ・公開指示受領（2026-10-17）
 
 - 確認URL提示後、本人から「品質ループを実施してから公開してください」と対象候補の公開指示を受領。
