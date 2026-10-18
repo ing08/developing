@@ -1,3 +1,12 @@
+## 本番公開完了（2026-10-18・家事2記事とサムネイル）
+
+- 本人のproduction承認後、本番run39090953396が成功。prepare/deploy/Smoke test/Release保存成功。
+- 公開一覧: https://ing08.github.io/developing/journal/
+- Release: https://github.com/ing08/developing/releases/tag/deploy-39090953396-1
+- 本番source SHA: 79792fd11cef2920a2551136e0e956138bb39f0d。STG run39090563806の同一ZIPを昇格。
+- 公開確認: version.json一致。主要HTML・サムネイル・ハッシュ付き記事データ10ファイルが候補manifestと一致。ブラウザで一覧6記事、健康カテゴリなし、サムネイル6枚の正常読込を確認。
+- 新規公開記事: sharing-housework-app / enjoying-housework。visualizing-houseworkのサムネイルも洗濯イラストに更新。
+- PR #2はOPENのままでmain未統合。公開サイトの成功とソース統合は別状態。PRレビュー・統合が残る。
 ## 品質ループ完了・本番承認待ち（2026-10-18）
 
 - 本人から「品質ループを実施してリリースして」と指示受領。対象は提示済み79792fd11cef2920a2551136e0e956138bb39f0d / STG run39090563806。
