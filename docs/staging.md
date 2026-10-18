@@ -1,3 +1,14 @@
+## 本人QA待ち（2026-10-18・家事2本と健康3本）
+
+- ユーザーの「stgで確認させてください」によりコミット・push・STG配備を実施。本番は未公開。
+- 確認URL: https://ing08.github.io/developing-stg/journal/?v=90004b7
+- 対象ソースSHA: 90004b70a18e832f10cf732eb6cf7698e8950723（content/articles-20261018）。main未統合。
+- Check成功: https://github.com/ing08/developing/actions/runs/39089589386
+- STG成功: https://github.com/ing08/developing-stg/actions/runs/39089614665
+- ZIP SHA256: 1da718963e98e19a6bde3b1ceda8e876fdca1180ce9971fde2ef355704f7bb68
+- 記事: sharing-housework-app / enjoying-housework / preventing-lifestyle-diseases / reading-health-check-results / daily-step-goals。健康カテゴリを追加。
+- 検証: Python11件・Node5件、JS構文、ビルド成功。ローカル5記事の390px横はみ出しなし。画像内容を確認し、未対応通知機能を示唆する図を除外。健康記事に厚生労働省資料を追加。STG一覧9件と新規5記事の表示、公開version.jsonのSHA一致を確認。
+- 本人確認: 記事本文・画像、健康カテゴリ、FAQとリンクを確認。本人QAと対象付き公開指示後、同じSTG ZIPをproduction承認経由で昇格する。
 ## 本番公開完了（2026-10-17・家事の見える化）
 
 - 本人のGitHub承認後、本番run 38995233902が成功。以下の承認待ち記述は履歴。
