@@ -1,3 +1,59 @@
+## 本番公開完了（2026-10-18・家事2記事とサムネイル）
+
+- 本人のproduction承認後、本番run39090953396が成功。prepare/deploy/Smoke test/Release保存成功。
+- 公開一覧: https://ing08.github.io/developing/journal/
+- Release: https://github.com/ing08/developing/releases/tag/deploy-39090953396-1
+- 本番source SHA: 79792fd11cef2920a2551136e0e956138bb39f0d。STG run39090563806の同一ZIPを昇格。
+- 公開確認: version.json一致。主要HTML・サムネイル・ハッシュ付き記事データ10ファイルが候補manifestと一致。ブラウザで一覧6記事、健康カテゴリなし、サムネイル6枚の正常読込を確認。
+- 新規公開記事: sharing-housework-app / enjoying-housework。visualizing-houseworkのサムネイルも洗濯イラストに更新。
+- PR #2はOPENのままでmain未統合。公開サイトの成功とソース統合は別状態。PRレビュー・統合が残る。
+## 品質ループ完了・本番承認待ち（2026-10-18）
+
+- 本人から「品質ループを実施してリリースして」と指示受領。対象は提示済み79792fd11cef2920a2551136e0e956138bb39f0d / STG run39090563806。
+- 観点: 家事2本の内容と健康記事除外、サムネイル、FAQ・リンク・390px表示、キャッシュ更新、既存記事保持、候補ZIPと配信内容の一致。
+- 最終ラウンド新規問題0件。Python11件・Node5件・構文確認成功。3記事のFAQ開閉、横はみ出しなし、console error0件。ZIP全ファイルとSTGの主要10ファイルのハッシュ一致。候補後の差分は運用記録のみ。
+- main直接pushは自動承認レビューで拒否されたため未実施。レビュー用PR: https://github.com/ing08/developing/pull/2 （main未統合）。
+- 本番run: https://github.com/ing08/developing/actions/runs/39090953396
+- prepare成功、確認済みZIP取得・全ファイル検証済み。deployはproduction本人承認待ち。本番公開完了ではない。
+- 本人はGitHubでPRレビュー・統合、および本番runのReview deploymentsからproduction承認を行う。エージェントは承認ゲートを代行解除しない。公開後にSHA・画面・画像・Releaseを検証する。
+## 本人QA待ち・サムネイル最終修正版（2026-10-18）
+
+- 見える化記事のサムネイルを洗濯かごとタオルのイラストへ変更。記事・カテゴリデータを内容ハッシュ付きファイル名で配信し、旧キャッシュ残留を解消。
+- 確認URL: https://ing08.github.io/developing-stg/journal/?v=79792fd
+- 対象SHA: 79792fd11cef2920a2551136e0e956138bb39f0d
+- Check成功: 39090540629 / STG成功: 39090563806
+- ZIP SHA256: 75e11cd50159e30f256bf2c14e3108251a4768b01fa0526f8f45ae10ae9c6d45
+- Python11件・Node5件成功。データ更新時の参照ファイル変更を検証。STGブラウザで見える化記事がlaundry.jpgを参照し読込成功を確認。
+- 本番未公開。本人QA対象はこの版。以下は旧候補の履歴。
+## 本人QA待ち・見える化サムネイル修正（2026-10-18）
+
+- 家事の見える化の一覧・OGP画像を洗濯かごとタオルの既存イラストへ変更。記事データのキャッシュ識別子をr3に更新。
+- 対象SHA: 6f0a7095f5df1339520d2b2eb2b069744049c085
+- STG: https://ing08.github.io/developing-stg/journal/?v=6f0a709
+- Check成功: 39090302614 / STG成功: 39090330653
+- ZIP SHA256: e62947225a7019d09d1b483a5653bb62f1dc8dbba67e7d9de95b6e8c4f86bd90
+- 配備SHAと配信data.jsの画像指定一致。ブラウザ表示は配備直後のキャッシュ残留を確認中。本番未公開。
+## 本人QA待ち・修正版（2026-10-18）
+
+- ユーザー指摘により健康記事3本・健康カテゴリ・画像を除外。追加記事は家事2本のみ。nelumo原本は保持。
+- 家事2本のサムネイルを定型タイトル画像から本文イラストへ変更。data/catalog読込バージョンを更新して旧キャッシュ残留も修正。
+- 確認URL: https://ing08.github.io/developing-stg/journal/?v=04b0d5c
+- 対象SHA: 04b0d5c9290358df79da29823b9e1b2fcc0c2cb2
+- Check成功: 39090007615 / STG成功: 39090034974
+- ZIP SHA256: cbb175257094a80a7cd294e0008a9df3f5c67884fe7291c26a7cace11bc8bf8c
+- 公開version.json一致。ブラウザで一覧6件、健康カテゴリなし、新規2画像の読込成功を確認。Python11件・Node5件成功。
+- 本番未公開。以下の5本版は失効した履歴。新しい本人QA対象は上記修正版。
+## 本人QA待ち（2026-10-18・家事2本と健康3本）
+
+- ユーザーの「stgで確認させてください」によりコミット・push・STG配備を実施。本番は未公開。
+- 確認URL: https://ing08.github.io/developing-stg/journal/?v=90004b7
+- 対象ソースSHA: 90004b70a18e832f10cf732eb6cf7698e8950723（content/articles-20261018）。main未統合。
+- Check成功: https://github.com/ing08/developing/actions/runs/39089589386
+- STG成功: https://github.com/ing08/developing-stg/actions/runs/39089614665
+- ZIP SHA256: 1da718963e98e19a6bde3b1ceda8e876fdca1180ce9971fde2ef355704f7bb68
+- 記事: sharing-housework-app / enjoying-housework / preventing-lifestyle-diseases / reading-health-check-results / daily-step-goals。健康カテゴリを追加。
+- 検証: Python11件・Node5件、JS構文、ビルド成功。ローカル5記事の390px横はみ出しなし。画像内容を確認し、未対応通知機能を示唆する図を除外。健康記事に厚生労働省資料を追加。STG一覧9件と新規5記事の表示、公開version.jsonのSHA一致を確認。
+- 本人確認: 記事本文・画像、健康カテゴリ、FAQとリンクを確認。本人QAと対象付き公開指示後、同じSTG ZIPをproduction承認経由で昇格する。
 ## 本番公開完了（2026-10-17・家事の見える化）
 
 - 本人のGitHub承認後、本番run 38995233902が成功。以下の承認待ち記述は履歴。

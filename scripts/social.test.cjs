@@ -14,6 +14,8 @@ test('all registered pages get static OGP, canonical URLs and valid local assets
   try {
     fs.cpSync(source,temp,{recursive:true});
     const result = generate(temp);
+    const firstDataFile = fs.readFileSync(path.join(temp,'index.html'),'utf8').match(/src="(data\.[a-f0-9]+\.js)"/)[1];
+    assert.equal(fs.readFileSync(path.join(temp,firstDataFile),'utf8'),fs.readFileSync(path.join(temp,'data.js'),'utf8'));
     assert.equal(result.length, 3 + catalog.apps.length + catalog.articles.length + catalog.categories.length);
     for (const page of result) {
       const file = path.join(temp,page.route === 'home' ? '' : page.route,'index.html');
@@ -35,6 +37,7 @@ test('all registered pages get static OGP, canonical URLs and valid local assets
     fs.writeFileSync(path.join(temp,'data.js'),'const articles = [{slug:"quote",title:"A \\"quote\\" & title",desc:"A <description>"}];');
     generate(temp);
     const escaped = fs.readFileSync(path.join(temp,'article/quote/index.html'),'utf8');
+    assert.notEqual(escaped.match(/src="(data\.[a-f0-9]+\.js)"/)[1],firstDataFile);
     assert.ok(escaped.includes('content="A &quot;quote&quot; &amp; title | developING"'));
     assert.ok(escaped.includes('content="A &lt;description&gt;"'));
     fs.copyFileSync(path.join(source,'index.html'),path.join(temp,'index.html'));
