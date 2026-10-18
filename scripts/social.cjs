@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const crypto = require('node:crypto');
 const Routes = require('../site/routes.js');
 const ORIGIN = 'https://ing08.github.io/developing/';
 const FALLBACK = 'cat-cafe-generated.webp';
@@ -38,7 +39,15 @@ function pages({articles, apps, categories}) {
 function generate(site) {
   const catalog = load(site);
   const entries = pages(catalog);
-  const template = fs.readFileSync(path.join(site, 'index.html'), 'utf8');
+  let template = fs.readFileSync(path.join(site, 'index.html'), 'utf8');
+  // Content-addressed data files prevent stale article/category caches after deployment.
+  for (const name of ['data', 'catalog']) {
+    const bytes = fs.readFileSync(path.join(site, `${name}.js`));
+    const hash = crypto.createHash('sha256').update(bytes).digest('hex').slice(0, 16);
+    const filename = `${name}.${hash}.js`;
+    fs.writeFileSync(path.join(site, filename), bytes);
+    template = template.replace(new RegExp(`src="${name}(?:\\.[a-f0-9]+)?\\.js(?:\\?[^" ]*)?"`), `src="${filename}"`);
+  }
   for (const page of entries) {
     const imagePath = path.resolve(site, 'assets', page.image);
     if (!imagePath.startsWith(path.resolve(site, 'assets') + path.sep) || !fs.existsSync(imagePath) || !/\.(png|jpe?g|webp)$/i.test(page.image)) throw new Error(`Missing or unsupported social image: ${page.image}`);
