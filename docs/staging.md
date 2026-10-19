@@ -1,3 +1,19 @@
+## 本番公開完了（2026-10-19・残り7記事）
+
+- 本人のproduction承認後、run39185007328成功。STG run39184685100の同一ZIPを配備。
+- 本番: https://ing08.github.io/developing/journal/ （全13記事）
+- Release: https://github.com/ing08/developing/releases/tag/deploy-39185007328-1
+- source SHA: 8160b3b91a448ca5b9b4e5ea98f848c7c9be4e47
+- 公開version.json一致。本番18ファイル（新規7記事HTML・画像9枚・記事データ・version）と候補manifestのハッシュ一致。ブラウザで全13記事の一覧と本番URL、コンソールエラー0を確認。
+- nelumoの新規3記事（感謝・同棲・分担表）を本番URL付きで公開済みに登録。Codex執筆4記事を含め、計画全13本の本番公開完了。
+- PR #3はOPEN。公開完了とmainへのソース統合は別状態。
+## 品質ループ完了・本番リリース開始（2026-10-19）
+
+- 本人へ7記事のSTG対象を提示後、「品質ループして公開いしてください」と公開指示を受領。
+- 対象: 8160b3b91a448ca5b9b4e5ea98f848c7c9be4e47 / STG run39184685100。
+- 最終品質ループ: 7テーマの内容・現行機能・既存6記事保持・画像・リンク・FAQ・スマホ表示を前回検証と照合。配信差分なし。Python11件・Node5件再実行成功、ZIP全ファイルとSTG配信18ファイルの一致を再検証。新規問題0件。
+- 本番run: https://github.com/ing08/developing/actions/runs/39185007328
+- 本番公開完了ではない。production本人承認後に配備SHA・記事・画像・Releaseを確認する。nelumo新規3記事の公開済み登録も本番確認後。
 ## 本番公開完了（2026-10-18・家事2記事とサムネイル）
 
 - 本人のproduction承認後、本番run39090953396が成功。prepare/deploy/Smoke test/Release保存成功。
@@ -327,3 +343,16 @@
 - 公開STGをブラウザで目視。ホーム、記事絞り込み2件、カテゴリテーマ、390pxカテゴリ・記事の横はみ出しなし、コンソールエラー0件。
 - 新規問題0件。ただし本人QAと本番配備・復旧の実地検証は未実施。成功したと扱わない。
 - 後続コミットはテスト・文書のみ。配信内容は上記QA対象から変更なし。次の変更時は再配備が必要か差分を照合する。
+## 本人QA待ち（2026-10-19・家事7記事）
+
+- 残り7記事を追加し計13記事。nelumo3本を編集、本人指示でCodex4本を執筆。計画対応は articles-20261019.md。
+- STG: https://ing08.github.io/developing-stg/journal/?v=8160b3b
+- source SHA: 8160b3b91a448ca5b9b4e5ea98f848c7c9be4e47
+- Check成功: 39184648299 / STG成功: 39184685100
+- ZIP SHA256: 54981376dedd7eeabecdc2de8759e79b334752863597bac58879d4d10eca80f9
+- PR: https://github.com/ing08/developing/pull/3
+- Python11件、Node5件、JS構文成功。7記事のスマホ幅・FAQ・アプリ導線、既存6記事保持、コンソールエラー0。候補ZIP全ファイルとSTG18配信ファイルのハッシュ一致。
+- 初回STGで相対アプリリンク不具合1件を検出し修正・再配備。最終ラウンドの新規問題0件。
+- 本人QA依頼済み。今回7記事は本番未公開。本人QA合格後に上記STG runを昇格し、本人がproductionを承認する。
+- 10/18のPR #2は現在mainへ統合済み。以下の「未統合」は当時の履歴。
+
