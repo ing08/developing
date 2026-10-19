@@ -1,3 +1,12 @@
+## 本番公開完了（2026-10-19・残り7記事）
+
+- 本人のproduction承認後、run39185007328成功。STG run39184685100の同一ZIPを配備。
+- 本番: https://ing08.github.io/developing/journal/ （全13記事）
+- Release: https://github.com/ing08/developing/releases/tag/deploy-39185007328-1
+- source SHA: 8160b3b91a448ca5b9b4e5ea98f848c7c9be4e47
+- 公開version.json一致。本番18ファイル（新規7記事HTML・画像9枚・記事データ・version）と候補manifestのハッシュ一致。ブラウザで全13記事の一覧と本番URL、コンソールエラー0を確認。
+- nelumoの新規3記事（感謝・同棲・分担表）を本番URL付きで公開済みに登録。Codex執筆4記事を含め、計画全13本の本番公開完了。
+- PR #3はOPEN。公開完了とmainへのソース統合は別状態。
 ## 品質ループ完了・本番リリース開始（2026-10-19）
 
 - 本人へ7記事のSTG対象を提示後、「品質ループして公開いしてください」と公開指示を受領。
