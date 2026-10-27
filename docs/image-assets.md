@@ -77,3 +77,9 @@ Create a 3:2 explanatory editorial illustration for RANDOMLY DISPLAYING ONE IMAG
 保存先: `site/assets/media-album-v2.webp`
 
 Create a 3:2 explanatory editorial illustration for OPENING AN ALBUM and narrowing what to view in Media Shuffle. Based on attached public demo landscape's style and subject: minimalist broad curved hills, circular sun, soft peach and slate blue. Arrange six equally sized landscape thumbnails in a clean two-row grid, varying misty blue morning, peach dawn, teal coastline and gray mountains; three form a gently emphasized group with muted teal framing. Offwhite background, restrained fine lines, generous margins. Conceptual editorial illustration, no invented app UI, no text, numbers, people, physical photo albums, or buttons.
+
+## Relicのアプリ紹介画像（2026-10-27）
+
+- `relic-icon-v1.png`: Relicの `public/icons/icon-512.png` を使用。
+- `relic-cover-v1.webp` / `relic-organize-v1.webp`: 内蔵画像生成で作成した架空のカードのイラスト。実投稿・画面を使わず、1200×800 WebPに変換。
+- プロンプト: 本人専用の保存投稿ライブラリ、カードとタグ、整理・再発見、紺・青灰・クリーム・琥珀色。文字、実投稿、ロゴ、架空UIを含めない。
